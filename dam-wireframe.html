@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAM SharePoint Wireframe — Brand Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Fraunces:opsz,wght@9..144,400;9..144,600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FAFAF8;
+  --surface: #FFFFFF;
+  --surface-alt: #F3F2EE;
+  --border: #E2E0DA;
+  --border-hover: #C8C5BC;
+  --text: #1A1A18;
+  --text-secondary: #7A7870;
+  --text-hint: #A8A69E;
+  --accent: #1D6B52;
+  --accent-light: #E4F2EC;
+  --accent-text: #145A44;
+  --warning: #B8860B;
+  --warning-light: #FFF8E7;
+  --warning-text: #8B6914;
+  --success: #2E7D32;
+  --success-light: #E8F5E9;
+  --success-text: #1B5E20;
+  --danger: #C62828;
+  --danger-light: #FFEBEE;
+  --info: #1565C0;
+  --info-light: #E3F2FD;
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --radius: 10px;
+  --radius-lg: 14px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  gap: 1.5rem;
+}
+.topbar-logo {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+.topbar-title {
+  font-size: 13px;
+  color: var(--text-secondary);
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--border);
+}
+.topbar-right {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+/* Nav tabs */
+.page-nav {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+}
+.page-nav button {
+  all: unset;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  padding: 12px 20px;
+  color: var(--text-secondary);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.page-nav button:hover { color: var(--text); }
+.page-nav button.active {
+  color: var(--accent);
+  font-weight: 500;
+  border-bottom-color: var(--accent);
+}
+.page-nav .nav-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--surface-alt);
+  font-size: 11px;
+  font-weight: 500;
+  margin-right: 6px;
+  color: var(--text-secondary);
+  transition: all 0.2s;
+}
+.page-nav button.active .nav-number {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Main content */
+.main { max-width: 1100px; margin: 0 auto; padding: 2rem; }
+.page-section { display: none; animation: fadeIn 0.3s ease; }
+.page-section.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Wireframe card */
+.wireframe-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+.wireframe-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wireframe-body { padding: 0; }
+
+/* Dev notes */
+.dev-notes {
+  margin-top: 1.25rem;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.dev-notes-header {
+  background: var(--accent);
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.dev-notes-body {
+  background: var(--accent-light);
+  padding: 16px;
+}
+.dev-notes-body ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.dev-notes-body li {
+  font-size: 13px;
+  color: var(--accent-text);
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.55;
+}
+.dev-notes-body li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* Page description */
+.page-desc {
+  margin-bottom: 1.25rem;
+}
+.page-desc h2 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.page-desc p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 600px;
+}
+
+/* Wireframe internals */
+.w-logo {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 700; color: #fff; letter-spacing: 0.05em;
+}
+.w-logo-lg {
+  width: 72px; height: 72px; border-radius: 16px;
+  background: var(--accent);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; color: #fff; letter-spacing: 0.05em;
+}
+.w-nav { display: flex; gap: 20px; font-size: 13px; color: var(--text-secondary); }
+.w-nav span { cursor: default; }
+.w-nav .active-link { color: var(--text); font-weight: 500; border-bottom: 2px solid var(--text); padding-bottom: 2px; }
+.w-badge {
+  font-size: 11px; padding: 2px 10px; border-radius: 20px;
+  font-weight: 500; display: inline-block;
+}
+.w-badge-green { background: var(--success-light); color: var(--success-text); }
+.w-badge-amber { background: var(--warning-light); color: var(--warning-text); }
+.w-badge-blue { background: var(--info-light); color: var(--info); }
+.w-search {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 7px 14px; font-size: 13px; width: 200px;
+  font-family: var(--font-body); color: var(--text); outline: none;
+  background: var(--surface-alt);
+}
+.w-search::placeholder { color: var(--text-hint); }
+.w-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 600;
+}
+.w-btn {
+  font-family: var(--font-body); font-size: 13px;
+  padding: 8px 18px; border-radius: var(--radius);
+  cursor: default; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font-weight: 500;
+}
+.w-btn-primary {
+  background: var(--text); color: var(--surface);
+  border-color: var(--text);
+}
+.w-btn-accent {
+  background: var(--accent); color: #fff;
+  border-color: var(--accent);
+}
+.w-btn-sm { font-size: 12px; padding: 5px 12px; }
+.w-stat {
+  background: var(--surface-alt);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+}
+.w-stat-label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; }
+.w-stat-value { font-size: 24px; font-weight: 700; letter-spacing: -0.02em; }
+.w-placeholder {
+  background: var(--surface-alt); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-hint); font-size: 12px;
+}
+.w-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+.w-card:hover { box-shadow: var(--shadow-md); }
+.w-field label {
+  display: block; font-size: 12px; color: var(--text-secondary);
+  margin-bottom: 4px; font-weight: 500;
+}
+.w-field input, .w-field textarea, .w-field select {
+  width: 100%; border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 9px 14px; font-size: 14px; font-family: var(--font-body);
+  color: var(--text); outline: none; background: var(--surface);
+}
+.w-field textarea { resize: vertical; }
+.w-row-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 12px 14px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface);
+}
+.w-section-label {
+  font-size: 11px; font-weight: 600; color: var(--text-hint);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+/* Split layout for landing */
+.split-layout { display: grid; grid-template-columns: 1fr 1fr; min-height: 520px; }
+.split-left {
+  background: linear-gradient(135deg, #1D6B52 0%, #14503E 60%, #0D3A2C 100%);
+  display: flex; align-items: center; justify-content: center;
+  padding: 3rem; position: relative; overflow: hidden;
+}
+.split-left::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px);
+}
+.split-right {
+  padding: 3rem 2.5rem;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.entry-option {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: default;
+  transition: all 0.2s;
+}
+.entry-option:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-sm);
+}
+.entry-option-highlight {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+/* Filter bar */
+.filter-bar {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.filter-bar select {
+  font-family: var(--font-body); font-size: 12px;
+  padding: 6px 12px; border: 1px solid var(--border);
+  border-radius: var(--radius); background: var(--surface);
+  color: var(--text); cursor: default;
+}
+
+/* Metadata table */
+.meta-table { width: 100%; font-size: 13px; }
+.meta-table td { padding: 7px 0; vertical-align: top; }
+.meta-table td:first-child { color: var(--text-secondary); width: 130px; }
+.meta-tag {
+  display: inline-block; font-size: 11px; padding: 2px 10px;
+  background: var(--surface-alt); border-radius: 20px;
+  margin-right: 4px; color: var(--text-secondary);
+}
+
+/* Approval card */
+.approval-card {
+  padding: 14px 16px;
+  border: 1px solid #E8D5A0;
+  border-radius: var(--radius);
+  background: var(--warning-light);
+}
+
+/* Footer */
+.wireframe-footer {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  font-size: 12px;
+  color: var(--text-hint);
+}
+
+@media (max-width: 768px) {
+  .split-layout { grid-template-columns: 1fr; }
+  .split-left { min-height: 200px; }
+  .topbar { padding: 0 1rem; }
+  .page-nav { padding: 0 1rem; }
+  .main { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-logo">Brand Hub</span>
+  <span class="topbar-title">DAM wireframe specification</span>
+  <span class="topbar-right">Click tabs to navigate pages</span>
+</div>
+
+<nav class="page-nav" id="pageNav">
+  <button class="active" onclick="showPage('landing', this)"><span class="nav-number">1</span>Landing</button>
+  <button onclick="showPage('request', this)"><span class="nav-number">2</span>Request access</button>
+  <button onclick="showPage('external', this)"><span class="nav-number">3</span>External home</button>
+  <button onclick="showPage('internal', this)"><span class="nav-number">4</span>Internal home</button>
+  <button onclick="showPage('detail', this)"><span class="nav-number">5</span>Asset detail</button>
+  <button onclick="showPage('upload', this)"><span class="nav-number">6</span>Upload / manage</button>
+</nav>
+
+<div class="main">
+
+<!-- ======= PAGE 1: LANDING ======= -->
+<div class="page-section active" id="page-landing">
+  <div class="page-desc">
+    <h2>Landing &amp; login page</h2>
+    <p>The public entry point. Mirrors the Deloitte Brand Space pattern — a branded hero on the left, role-based entry points on the right.</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-body">
+      <div class="split-layout">
+        <div class="split-left">
+          <div style="text-align: center; position: relative; z-index: 1;">
+            <div class="w-logo-lg" style="margin: 0 auto 1.25rem;">LOGO</div>
+            <p style="color: rgba(255,255,255,0.9); font-size: 15px; font-weight: 500; margin-bottom: 6px;">Your Company</p>
+            <p style="color: rgba(255,255,255,0.55); font-size: 13px; max-width: 240px; margin: 0 auto;">Hero image, brand pattern, or full-bleed visual goes here</p>
+          </div>
+        </div>
+        <div class="split-right">
+          <p style="font-size: 12px; color: var(--text-hint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 4px;">Your Company</p>
+          <p style="font-family: var(--font-display); font-size: 26px; font-weight: 600; margin-bottom: 4px; letter-spacing: -0.01em;">Brand Hub</p>
+          <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 2rem;">Start your brand journey here…</p>
+
+          <p style="font-size: 14px; font-weight: 500; margin-bottom: 14px;">Select the option that describes your role:</p>
+
+          <div style="display: flex; flex-direction: column; gap: 10px; max-width: 360px;">
+            <div class="entry-option">
+              <div>
+                <p style="font-size: 14px; font-weight: 500;">Internal user (employee)</p>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Sign in with company SSO</p>
+              </div>
+              <span style="font-size: 18px; color: var(--text-hint);">→</span>
+            </div>
+            <div class="entry-option">
+              <div>
+                <p style="font-size: 14px; font-weight: 500;">External user (vendor / partner)</p>
+                <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Log in with your credentials</p>
+              </div>
+              <span style="font-size: 18px; color: var(--text-hint);">→</span>
+            </div>
+            <div class="entry-option entry-option-highlight">
+              <div>
+                <p style="font-size: 14px; font-weight: 500; color: var(--accent-text);">Request vendor access</p>
+                <p style="font-size: 12px; color: var(--accent-text); opacity: 0.7; margin-top: 2px;">New here? Submit a request</p>
+              </div>
+              <span style="font-size: 18px; color: var(--accent);">→</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 2.5rem; display: flex; gap: 20px; font-size: 12px; color: var(--text-hint);">
+            <span>Forgot password?</span>
+            <span>Privacy notice</span>
+            <span>Terms of use</span>
+            <span>Cookie settings</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>Use a SharePoint communication site with a custom login/landing page (SPFx full-page application or custom web part)</li>
+        <li>"Internal user" button redirects to Azure AD SSO — on success, route to Internal Home (page 4)</li>
+        <li>"External user" button redirects to Azure AD B2B guest login — on success, route to External Home (page 3)</li>
+        <li>"Request vendor access" links to the Request Access form page (page 2)</li>
+        <li>Left panel: use a full-bleed hero image or CSS background. Consider rotating seasonal brand imagery.</li>
+        <li>Footer links (Privacy, Terms, Cookies) open external URLs or document library PDFs</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======= PAGE 2: REQUEST ACCESS ======= -->
+<div class="page-section" id="page-request">
+  <div class="page-desc">
+    <h2>Request access form</h2>
+    <p>Public-facing form for external vendors and partners to request access. Submissions trigger an approval workflow.</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-header">
+      <div class="w-logo">BH</div>
+      <span style="font-weight: 500; font-size: 15px;">Brand Hub</span>
+      <span style="margin-left: auto; font-size: 13px; color: var(--text-secondary); cursor: default;">← Back to login</span>
+    </div>
+    <div class="wireframe-body" style="padding: 2.5rem; max-width: 540px; margin: 0 auto;">
+      <p style="font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 6px;">Request access</p>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 2rem;">Fill out the form below. Our team will review your request within 2 business days.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="w-field"><label>First name *</label><input type="text" placeholder="Jane"></div>
+          <div class="w-field"><label>Last name *</label><input type="text" placeholder="Doe"></div>
+        </div>
+        <div class="w-field"><label>Email address *</label><input type="email" placeholder="jane@agency.com"></div>
+        <div class="w-field"><label>Company / organization *</label><input type="text" placeholder="Agency XYZ"></div>
+        <div class="w-field"><label>Role / title</label><input type="text" placeholder="Creative Director"></div>
+        <div class="w-field"><label>Internal sponsor (who invited you?) *</label><input type="text" placeholder="Name of your contact at our company"></div>
+        <div class="w-field"><label>Reason for access *</label><textarea rows="3" placeholder="Briefly describe the project or reason you need brand assets…"></textarea></div>
+        <div style="display: flex; align-items: start; gap: 10px;">
+          <input type="checkbox" style="margin-top: 4px; width: 16px; height: 16px;">
+          <span style="font-size: 13px; color: var(--text-secondary);">I agree to the terms of use and will not redistribute brand assets without written permission.</span>
+        </div>
+        <div style="margin-top: 8px;">
+          <span class="w-btn w-btn-primary" style="font-size: 14px; padding: 11px 28px;">Submit request</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>Build with Microsoft Power Apps embedded form or Microsoft Forms iframe on a SharePoint page</li>
+        <li>Submissions write to a SharePoint list ("Access Requests") with columns matching each field</li>
+        <li>Power Automate flow triggers on new list item: emails the marketing team / DAM admin with approve/deny links</li>
+        <li>"Internal sponsor" field helps admins verify the relationship — consider a people picker if Azure AD lookup is available</li>
+        <li>On approval: Power Automate adds the user to an Azure AD B2B guest group with scoped permissions to the external document libraries</li>
+        <li>On denial: automated email to the requester with optional reason</li>
+        <li>Terms checkbox is required before submission; terms PDF stored in a public document library</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======= PAGE 3: EXTERNAL HOME ======= -->
+<div class="page-section" id="page-external">
+  <div class="page-desc">
+    <h2>External user home</h2>
+    <p>Read-only, curated view for vendors and partners. They see only published, approved assets — no drafts, no admin tools, no upload capability.</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-header" style="flex-wrap: wrap; gap: 8px;">
+      <div class="w-logo">BH</div>
+      <span style="font-weight: 500; font-size: 15px;">Brand Hub</span>
+      <div class="w-nav" style="margin-left: 1.5rem;">
+        <span class="active-link">Home</span>
+        <span>Logo library</span>
+        <span>Templates</span>
+        <span>Guidelines</span>
+      </div>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+        <input class="w-search" type="text" placeholder="Search assets…">
+        <div class="w-avatar" style="background: var(--accent-light); color: var(--accent-text);">JD</div>
+      </div>
+    </div>
+    <div class="wireframe-body" style="padding: 2rem 1.5rem;">
+
+      <div style="background: var(--surface-alt); border-radius: var(--radius); padding: 2rem; text-align: center; margin-bottom: 2rem;">
+        <p style="font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 4px;">Welcome, Jane</p>
+        <p style="font-size: 14px; color: var(--text-secondary);">Browse approved brand assets for your project. Use the search bar or categories below.</p>
+      </div>
+
+      <div class="w-section-label">Asset categories</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem;">
+        <div class="w-card" style="cursor: default;">
+          <div class="w-placeholder" style="height: 80px;">Logo preview area</div>
+          <div style="padding: 14px 16px;">
+            <p style="font-size: 14px; font-weight: 500; margin-bottom: 2px;">Logos</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">Primary, secondary, icon marks</p>
+          </div>
+        </div>
+        <div class="w-card" style="cursor: default;">
+          <div class="w-placeholder" style="height: 80px;">Template preview area</div>
+          <div style="padding: 14px 16px;">
+            <p style="font-size: 14px; font-weight: 500; margin-bottom: 2px;">Templates</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">PPT, Word, email signatures</p>
+          </div>
+        </div>
+        <div class="w-card" style="cursor: default;">
+          <div class="w-placeholder" style="height: 80px;">Guide preview area</div>
+          <div style="padding: 14px 16px;">
+            <p style="font-size: 14px; font-weight: 500; margin-bottom: 2px;">Brand guidelines</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">Colors, fonts, usage rules</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-section-label">Recent assets</div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="w-row-item">
+          <div class="w-placeholder" style="width: 44px; height: 44px; flex-shrink: 0; font-size: 11px;">.svg</div>
+          <div style="flex: 1;">
+            <p style="font-size: 14px; font-weight: 500;">Primary-logo-full-color.svg</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">Logos · Updated Jan 15, 2026</p>
+          </div>
+          <span class="w-btn w-btn-sm">Download</span>
+        </div>
+        <div class="w-row-item">
+          <div class="w-placeholder" style="width: 44px; height: 44px; flex-shrink: 0; font-size: 11px;">.pptx</div>
+          <div style="flex: 1;">
+            <p style="font-size: 14px; font-weight: 500;">Corporate-deck-template-Q1.pptx</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">Templates · Updated Feb 3, 2026</p>
+          </div>
+          <span class="w-btn w-btn-sm">Download</span>
+        </div>
+        <div class="w-row-item">
+          <div class="w-placeholder" style="width: 44px; height: 44px; flex-shrink: 0; font-size: 11px;">.pdf</div>
+          <div style="flex: 1;">
+            <p style="font-size: 14px; font-weight: 500;">Brand-guidelines-2026.pdf</p>
+            <p style="font-size: 12px; color: var(--text-secondary);">Guidelines · Updated Mar 1, 2026</p>
+          </div>
+          <span class="w-btn w-btn-sm">Download</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>External users land on a SharePoint communication site with audience-targeted navigation (hide internal-only nav items)</li>
+        <li>Asset categories are SharePoint document library views filtered by a "Category" managed metadata column</li>
+        <li>Use permission-trimmed security: external Azure AD guest group has read-only access to specific libraries/folders</li>
+        <li>Search bar uses SharePoint search scoped to the DAM site with a custom search results page</li>
+        <li>"Recent assets" section: use a Highlighted Content web part filtered to the user's recent activity or latest published items</li>
+        <li>Download buttons link directly to file URLs; consider tracking downloads via a Power Automate HTTP trigger</li>
+        <li>External users should NOT see: upload buttons, draft assets, admin tools, user management, or analytics</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======= PAGE 4: INTERNAL HOME ======= -->
+<div class="page-section" id="page-internal">
+  <div class="page-desc">
+    <h2>Internal user home (marketing team)</h2>
+    <p>Full-featured dashboard for internal teams. Includes stats, asset management, user approval queue, and activity feed.</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-header" style="flex-wrap: wrap; gap: 8px;">
+      <div class="w-logo">BH</div>
+      <span style="font-weight: 500; font-size: 15px;">Brand Hub</span>
+      <span class="w-badge w-badge-green">Internal</span>
+      <div class="w-nav" style="margin-left: 1rem;">
+        <span class="active-link">Dashboard</span>
+        <span>All assets</span>
+        <span>Upload</span>
+        <span>Collections</span>
+        <span>Users</span>
+        <span>Analytics</span>
+      </div>
+      <div style="margin-left: auto; display: flex; align-items: center; gap: 10px;">
+        <input class="w-search" type="text" placeholder="Search all assets…">
+        <div class="w-avatar" style="background: var(--accent); color: #fff;">MK</div>
+      </div>
+    </div>
+    <div class="wireframe-body" style="padding: 2rem 1.5rem;">
+
+      <!-- Stats row -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 2rem;">
+        <div class="w-stat">
+          <div class="w-stat-label">Total assets</div>
+          <div class="w-stat-value">1,247</div>
+        </div>
+        <div class="w-stat">
+          <div class="w-stat-label">Downloads (this month)</div>
+          <div class="w-stat-value">3,892</div>
+        </div>
+        <div class="w-stat">
+          <div class="w-stat-label">External users</div>
+          <div class="w-stat-value">84</div>
+        </div>
+        <div class="w-stat">
+          <div class="w-stat-label">Pending requests</div>
+          <div class="w-stat-value" style="color: var(--warning);">6</div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+        <!-- Asset library -->
+        <div>
+          <div class="w-section-label">Asset library</div>
+          <div class="filter-bar">
+            <select><option>All types</option></select>
+            <select><option>All categories</option></select>
+            <select><option>Status: all</option></select>
+            <span class="w-btn w-btn-accent w-btn-sm" style="margin-left: auto;">+ Upload asset</span>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+            <div class="w-card">
+              <div class="w-placeholder" style="height: 90px;">Thumbnail</div>
+              <div style="padding: 10px 12px;">
+                <p style="font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Primary-logo.svg</p>
+                <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 6px;">Logos · SVG · 24KB</p>
+                <span class="w-badge w-badge-green">Published</span>
+              </div>
+            </div>
+            <div class="w-card">
+              <div class="w-placeholder" style="height: 90px;">Thumbnail</div>
+              <div style="padding: 10px 12px;">
+                <p style="font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Social-banner-v2.png</p>
+                <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 6px;">Social · PNG · 1.2MB</p>
+                <span class="w-badge w-badge-amber">Draft</span>
+              </div>
+            </div>
+            <div class="w-card">
+              <div class="w-placeholder" style="height: 90px;">Thumbnail</div>
+              <div style="padding: 10px 12px;">
+                <p style="font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Brand-guidebook.pdf</p>
+                <p style="font-size: 11px; color: var(--text-secondary); margin: 2px 0 6px;">Guides · PDF · 8.4MB</p>
+                <span class="w-badge w-badge-green">Published</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div>
+          <div class="w-section-label">Pending access requests</div>
+          <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.5rem;">
+            <div class="approval-card">
+              <p style="font-size: 13px; font-weight: 500;">Sarah Chen</p>
+              <p style="font-size: 11px; color: var(--warning-text); margin: 2px 0 10px;">Agency XYZ · Requested Mar 24</p>
+              <div style="display: flex; gap: 6px;">
+                <span class="w-btn w-btn-sm" style="background: var(--success-light); color: var(--success-text); border-color: transparent;">Approve</span>
+                <span class="w-btn w-btn-sm">Deny</span>
+              </div>
+            </div>
+            <div class="approval-card">
+              <p style="font-size: 13px; font-weight: 500;">Mike Torres</p>
+              <p style="font-size: 11px; color: var(--warning-text); margin: 2px 0 10px;">Vendor Co · Requested Mar 25</p>
+              <div style="display: flex; gap: 6px;">
+                <span class="w-btn w-btn-sm" style="background: var(--success-light); color: var(--success-text); border-color: transparent;">Approve</span>
+                <span class="w-btn w-btn-sm">Deny</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-section-label">Recent activity</div>
+          <div style="font-size: 13px; color: var(--text-secondary); display: flex; flex-direction: column; gap: 8px;">
+            <p><span style="color: var(--text); font-weight: 500;">Lisa M.</span> uploaded Social-banner-v2.png</p>
+            <p><span style="color: var(--text); font-weight: 500;">Tom R.</span> published Q1-deck-template.pptx</p>
+            <p><span style="color: var(--text); font-weight: 500;">Jane D.</span> downloaded Primary-logo.svg</p>
+            <p><span style="color: var(--text); font-weight: 500;">Admin</span> approved Sarah Chen's access</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>Internal home is a SharePoint communication site home page with custom web parts</li>
+        <li>Stats row: use embedded Power BI tiles or custom SPFx web parts querying SharePoint REST API for counts</li>
+        <li>Asset library: SharePoint document library with managed metadata columns (Type, Category, Status) displayed in a custom gallery view</li>
+        <li>Filters use metadata navigation or a custom SPFx filter web part</li>
+        <li>Pending access requests: pull from the "Access Requests" SharePoint list (page 2); approve/deny buttons trigger Power Automate flows</li>
+        <li>Activity feed: use SharePoint site activity API, or a custom list that logs uploads/downloads/approvals via Power Automate</li>
+        <li>Nav tabs (Dashboard, All assets, Upload, Collections, Users, Analytics) are SharePoint site pages</li>
+        <li>"Collections" are SharePoint document sets or metadata-grouped views for curating themed asset bundles</li>
+        <li>"Users" page lists Azure AD guest users with their access status — consider a custom SPFx web part pulling from Microsoft Graph</li>
+        <li>"Analytics" page: embedded Power BI dashboard showing download trends, popular assets, user engagement</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======= PAGE 5: ASSET DETAIL ======= -->
+<div class="page-section" id="page-detail">
+  <div class="page-desc">
+    <h2>Asset detail page</h2>
+    <p>Full metadata view for a single asset. Includes preview, version history, tags, and actions. Visible to both internal and external users (with different action sets).</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-header">
+      <span style="font-size: 13px; color: var(--text-secondary); cursor: default;">← Back to library</span>
+    </div>
+    <div class="wireframe-body" style="padding: 2rem 1.5rem;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem;">
+        <div>
+          <div class="w-placeholder" style="width: 100%; height: 280px; border-radius: var(--radius); font-size: 14px;">Asset preview / full-size thumbnail</div>
+          <div style="display: flex; gap: 8px; margin-top: 12px;">
+            <div class="w-placeholder" style="width: 56px; height: 56px; border-radius: 6px; border: 2px solid var(--accent); font-size: 10px;">v3</div>
+            <div class="w-placeholder" style="width: 56px; height: 56px; border-radius: 6px; font-size: 10px;">v2</div>
+            <div class="w-placeholder" style="width: 56px; height: 56px; border-radius: 6px; font-size: 10px;">v1</div>
+            <div style="display: flex; align-items: center; font-size: 12px; color: var(--text-hint); margin-left: 8px;">← Version history</div>
+          </div>
+        </div>
+        <div>
+          <span class="w-badge w-badge-green" style="margin-bottom: 10px;">Published</span>
+          <p style="font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 4px;">Primary-logo-full-color.svg</p>
+          <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 1.5rem;">The primary full-color logo for use on light backgrounds. Do not modify or distort.</p>
+
+          <table class="meta-table" style="margin-bottom: 1.5rem;">
+            <tr><td>Category</td><td>Logos</td></tr>
+            <tr><td>File type</td><td>SVG (vector)</td></tr>
+            <tr><td>File size</td><td>24 KB</td></tr>
+            <tr><td>Dimensions</td><td>1200 × 400 px</td></tr>
+            <tr><td>Uploaded by</td><td>Marketing team</td></tr>
+            <tr><td>Last updated</td><td>Jan 15, 2026</td></tr>
+            <tr><td>Version</td><td>3 of 3</td></tr>
+            <tr><td>Tags</td><td><span class="meta-tag">brand</span><span class="meta-tag">logo</span><span class="meta-tag">primary</span><span class="meta-tag">full-color</span></td></tr>
+            <tr><td>Visibility</td><td><span class="w-badge w-badge-blue">Internal + External</span></td></tr>
+          </table>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="w-btn w-btn-primary">Download</span>
+            <span class="w-btn">Copy link</span>
+            <span class="w-btn">Edit metadata</span>
+            <span class="w-btn" style="color: var(--danger); border-color: var(--danger);">Archive</span>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 12px; color: var(--text-hint);">
+            <p style="margin-bottom: 4px;">External users see: Download, Copy link</p>
+            <p>Internal users see: Download, Copy link, Edit metadata, Archive</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>Asset detail is a custom SharePoint page layout driven by document library item metadata</li>
+        <li>Preview area: use SharePoint's built-in file preview (supports Office files, images, PDFs, videos)</li>
+        <li>Version history: leverage native SharePoint document versioning — display major versions as thumbnails</li>
+        <li>Tags: use managed metadata term sets for consistent taxonomy; display as pills</li>
+        <li>Visibility field: a choice column ("Internal only" / "Internal + External") that determines which Azure AD groups can see the item</li>
+        <li>"Edit metadata" opens the SharePoint list item edit panel (or a custom SPFx form)</li>
+        <li>"Archive" moves the asset to an archive folder / sets status to "Archived" (soft delete, not permanent)</li>
+        <li>Permission-trim action buttons: external users should not see "Edit metadata" or "Archive" — use audience targeting or conditional rendering in SPFx</li>
+        <li>Download tracking: log downloads to a SharePoint list via Power Automate (triggered by file access) for analytics</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======= PAGE 6: UPLOAD ======= -->
+<div class="page-section" id="page-upload">
+  <div class="page-desc">
+    <h2>Upload &amp; manage</h2>
+    <p>Internal-only page for uploading new assets. Files are saved as drafts by default and require publishing to become visible to external users.</p>
+  </div>
+
+  <div class="wireframe-card">
+    <div class="wireframe-header">
+      <span style="font-size: 13px; color: var(--text-secondary); cursor: default;">← Back to dashboard</span>
+    </div>
+    <div class="wireframe-body" style="padding: 2.5rem; max-width: 580px; margin: 0 auto;">
+      <p style="font-family: var(--font-display); font-size: 22px; font-weight: 600; margin-bottom: 6px;">Upload new asset</p>
+      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 2rem;">Add a file to the brand asset library. It will be saved as a draft until you publish it.</p>
+
+      <div style="border: 2px dashed var(--border-hover); border-radius: var(--radius-lg); padding: 2.5rem; text-align: center; margin-bottom: 1.5rem; background: var(--surface-alt);">
+        <div style="font-size: 28px; margin-bottom: 8px; color: var(--text-hint);">↑</div>
+        <p style="font-size: 14px; font-weight: 500; margin-bottom: 4px;">Drag and drop files here</p>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px;">SVG, PNG, JPG, PDF, PPTX, DOCX — up to 100 MB</p>
+        <span class="w-btn w-btn-sm">Browse files</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="w-field"><label>Asset title *</label><input type="text" placeholder="e.g. Primary Logo Full Color"></div>
+        <div class="w-field"><label>Description</label><textarea rows="2" placeholder="Brief description of the asset and its intended use…"></textarea></div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div class="w-field">
+            <label>Category *</label>
+            <select>
+              <option>Select…</option>
+              <option>Logos</option>
+              <option>Templates</option>
+              <option>Photography</option>
+              <option>Social media</option>
+              <option>Guidelines</option>
+              <option>Video</option>
+              <option>Icons</option>
+            </select>
+          </div>
+          <div class="w-field">
+            <label>Visibility *</label>
+            <select>
+              <option>Select…</option>
+              <option>Internal only</option>
+              <option>Internal + External</option>
+            </select>
+          </div>
+        </div>
+        <div class="w-field"><label>Tags (comma-separated)</label><input type="text" placeholder="e.g. brand, logo, primary, full-color"></div>
+        <div style="display: flex; gap: 10px; margin-top: 10px;">
+          <span class="w-btn w-btn-primary" style="font-size: 14px; padding: 11px 24px;">Save as draft</span>
+          <span class="w-btn" style="font-size: 14px; padding: 11px 24px;">Publish immediately</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="dev-notes">
+    <div class="dev-notes-header">SharePoint implementation notes</div>
+    <div class="dev-notes-body">
+      <ul>
+        <li>Upload form maps directly to SharePoint document library columns: Title, Description (multi-line text), Category (managed metadata), Visibility (choice), Tags (multi-value managed metadata)</li>
+        <li>Drag-and-drop: use native SharePoint file upload or a custom SPFx upload web part for a richer experience</li>
+        <li>Supported file types should be enforced at the library level (blocked file types setting)</li>
+        <li>100 MB limit: configurable in SharePoint admin; default tenant limit is 250 GB per file</li>
+        <li>"Save as draft" sets the content approval status to "Pending" — asset is visible internally but not to external users</li>
+        <li>"Publish immediately" sets content approval status to "Approved" — if approval workflows are enabled, this triggers an approval flow first</li>
+        <li>Consider enabling content approval on the document library so all uploads go through a review cycle before external visibility</li>
+        <li>After upload, redirect to the Asset Detail page (page 5) for the newly created item</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<div class="wireframe-footer">
+  <p style="font-weight: 500; margin-bottom: 4px;">Brand Hub — DAM wireframe specification</p>
+  <p>Created for SharePoint development team · March 2026</p>
+</div>
+
+<script>
+function showPage(id, btn) {
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.page-nav button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
